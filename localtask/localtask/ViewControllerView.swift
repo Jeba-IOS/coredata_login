@@ -29,6 +29,7 @@ class ViewControllerView: BaseView {
     
     @IBOutlet weak var continuebtn: UIButton!
 
+    @IBOutlet weak var closebtn: UIButton!
     override func didLoad(baseVC: BaseViewController) {
         self.viewController = baseVC as? ViewController
         self.initView()
@@ -64,21 +65,34 @@ class ViewControllerView: BaseView {
         
         if !self.viewController.fromdetail{
             print("Check")
+            self.closebtn.isHidden = false
             self.nametxtfld.text = self.viewController.DetailDict.name
             self.emailtxtfld.text =  self.viewController.DetailDict.email
             self.gendertxtfld.text = self.viewController.DetailDict.gender
             self.numbertxtfld.text = self.viewController.DetailDict.mobile
+        }else{
+            self.closebtn.isHidden = true
         }
-        
+         
+       
+        self.closebtn.setTitle("", for: .normal)
       //  self.postAPICall()
     }
 
+    @IBAction func closebtnAction(_ sender: Any) {
+        
+        self.viewController.dismiss(animated: true)
+        
+    }
     @IBAction func ContinueAction(_ sender: Any) {
-        
-        
-        self.viewController.postAPICall(name: nametxtfld.text ?? "", email: emailtxtfld.text ?? "", mobile: numbertxtfld.text ?? "", gender: gendertxtfld.text ?? "")
-        
-        
+        if !self.viewController.fromdetail{
+            self.viewController.PUTAPICall(name: nametxtfld.text ?? "", email: emailtxtfld.text ?? "", mobile: numbertxtfld.text ?? "", gender: gendertxtfld.text ?? "")
+            
+        }else{
+            
+            self.viewController.postAPICall(name: nametxtfld.text ?? "", email: emailtxtfld.text ?? "", mobile: numbertxtfld.text ?? "", gender: gendertxtfld.text ?? "")
+            
+        }
         
         
         
@@ -117,39 +131,7 @@ class ViewControllerView: BaseView {
                 debugPrint(error)
             }
         }
-    func retrieveData() {
-          guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else { return }
-          let managedContext = appDelegate.persistentContainer.viewContext
-          let fetchRequest = NSFetchRequest<LocalData>(entityName: "LocalData")
-          do {
-              let users = try managedContext.fetch(fetchRequest)
-              for user in users {
-                  if let name = user.name, let password = user.email,  let password = user.gender , let password = user.number {
-                      print("Username: \(name), Password: \(password)")
-//                      if usernameText.text == name {
-//                          if passwordText.text == password {
-//                              let storyBoard: UIStoryboard = UIStoryboard(name: "Main", bundle: nil)
-//                              let newViewController = storyBoard.instantiateViewController(withIdentifier: "ViewC3") as! ViewC3
-//                              newViewController.userName = usernameText.text!
-//                              newViewController.password = passwordText.text!
-//                              self.present(newViewController, animated: true, completion: nil)
-//                              return // Exit the loop after successful authentication
-//                          } else {
-//                              let alert = UIAlertController(title: "Wrong", message: "Invalid Password", preferredStyle: UIAlertController.Style.alert)
-//                              alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
-//                              self.present(alert, animated: true, completion: nil)
-//                              return
-//                          }
-//                      }
-                  }
-              }
-//              let alert = UIAlertController(title: "Wrong", message: "Invalid Username", preferredStyle: UIAlertController.Style.alert)
-//              alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
-//             // self.present(alert, animated: true, completion: nil)
-          } catch {
-              print("Error fetching data: \(error)")
-          }
-      }
+
 
     override func darkModeChange() {
         super.darkModeChange()

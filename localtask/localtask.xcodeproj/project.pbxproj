@@ -403,6 +403,7 @@
 				DEVELOPMENT_TEAM = W89HL6566S;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = localtask/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "sciflare Task";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
@@ -433,6 +434,7 @@
 				DEVELOPMENT_TEAM = W89HL6566S;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = localtask/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "sciflare Task";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;

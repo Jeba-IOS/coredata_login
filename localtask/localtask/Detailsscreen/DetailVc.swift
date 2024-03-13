@@ -24,7 +24,7 @@ class DetailVc: BaseViewController {
         return view
     }
     func callAPi() {
-            let url = "https://crudcrud.com/api/027ca3edadc04690907efe1613d0d176/jeba"
+            let url = "https://crudcrud.com/api/c97ffe72651e49599a64872330ca344c/jeba"
         AF.request(url, method: .get) .responseDecodable(of: Welcome.self) { [self]
                 responce in
                 switch responce.result {
