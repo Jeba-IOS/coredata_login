@@ -1,0 +1,6 @@
+framework module Pods_localtask {
+  umbrella header "Pods-localtask-umbrella.h"
+
+  export *
+  module * { export * }
+}
